@@ -1,0 +1,21 @@
+#ifndef FILES_MANAGER_H
+#define FILES_MANAGER_H
+
+#include "shared.h"
+
+/// PROTOTYPES
+int getID();
+int checkID(int);
+int checkName(char []);
+int countRecords(char [], size_t);
+
+void writeWizard(stWizard);
+int readWizardsFile(int, stWizard []);
+void searchWizardByID(int, int*, stWizard*);
+void modifyWizardInFile(stWizard, int);
+void deleteWizardInFile(stWizard, int);
+int countWizardsByHouse(char []);
+void fillWizByHouseArray(stWizard [], char []);
+void stackDeadWizards(Pila*);
+
+#endif
