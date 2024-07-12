@@ -147,6 +147,33 @@ void searchWizardByID(int id, int* pos, stWizard* wizard) {
         *pos = -1;
 }
 
+/* Searchs the wizard in the file 'wizards' which matches with the given name.
+    Receives the name of the wanted wizard and the memory address of it's position at the file.
+    Returns the wizard that matches with the given name (if it's not found, th value of the position is going to be -1) */
+stWizard searchWizardByName(char name[], int* pos) {
+    FILE* buf = fopen(WIZARDS_FILENAME, "rb");
+    stWizard aux;
+    int found = 0;
+
+    if(buf) {
+        *pos = 0;
+
+        while (found == 0 && (fread(&aux, sizeof(stWizard), 1, buf)) > 0)
+            if (strcmp(name, aux.name) == 0)
+                found = 1;
+            else
+                *pos += 1;
+
+        if (!found)
+            *pos = -1;
+
+        fclose(buf);
+    } else
+        *pos = -1;
+
+    return aux;
+}
+
 /* Modifies an existing wizard in the file 'wizards'.
     Receives as parameters the modified wizard and it's position in the file */
 void modifyWizardInFile(stWizard wizard, int pos) {

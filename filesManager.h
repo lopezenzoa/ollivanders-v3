@@ -12,6 +12,7 @@ int countRecords(char [], size_t);
 void writeWizard(stWizard);
 int readWizardsFile(int, stWizard []);
 void searchWizardByID(int, int*, stWizard*);
+stWizard searchWizardByName(char [], int*);
 void modifyWizardInFile(stWizard, int);
 void deleteWizardInFile(stWizard, int);
 int countWizardsByHouse(char []);
