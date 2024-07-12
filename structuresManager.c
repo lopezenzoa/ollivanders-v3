@@ -207,7 +207,7 @@ void showPersonalityTest() {
         if (!answer || answer < 0 || answer > 10)
             printf("\n\tPlease enter an integer number between 0 and 10\n");
 
-    } while (!answer);
+    } while (!answer || answer < 0 || answer > 10);
 
     do {
         printf("\n\tHow curious are you about magical knowledge and mysteries (0: Not curious at all - 10: Incredibly curious)? ");
