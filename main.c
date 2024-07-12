@@ -171,25 +171,18 @@ void executeOpts(int optCode) {
 void addWizard() {
     stWizard wizard;
     stWand wand;
-    int wizardID, nameFound;
+    int wizardID, nameFound, pos;
 
     wand = addWand();
 
-    do {
-        nameFound = checkName(wand.carrier);
+    nameFound = checkName(wand.carrier);
 
-        if (nameFound) {
-            do {
-                showWelcome();
-
-                printf("\n\tThat name was already belongs to a wizard\n\n\tPlease enter another name: ");
-                fflush(stdin);
-                gets(wand.carrier);
-
-                nameFound = checkName(wand.carrier);
-            } while (nameFound);
-        }
-    } while (nameFound);
+    if (nameFound) {
+        showWelcome();
+        
+        showWizard(searchWizardByName(wand.carrier, &pos));
+        printf("\n\tThat name already belongs to a wizard\n");
+    }
 
     wizardID = getID();
     wizard = loadWizardSt(wizardID, wand);
