@@ -7,7 +7,7 @@ int getWizardID() {
     int id;
 
     do {
-        printf("\n\tID: ");
+        printf("\n\t> ");
         scanf("%i", &id);
         while(getchar() != '\n');
 
