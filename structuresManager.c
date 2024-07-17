@@ -7,7 +7,7 @@ int getWizardID() {
     int id;
 
     do {
-        printf("\n\tPlease, enter the ID of the wizard you want to delete: ");
+        printf("\n\tID: ");
         scanf("%i", &id);
         while(getchar() != '\n');
 
