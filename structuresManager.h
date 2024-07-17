@@ -6,7 +6,8 @@
 /// PROTOTYPES
 int getWizardID();
 stWizard loadWizardSt(int, stWand);
-void showWizard(stWizard wizard);
+void showWizard(stWizard);
+void showWand(stWand);
 stWizard modifyWizardSt(stWizard);
 stWizard modifyWizardComplete(stWizard);
 stWizard modifyWizardByField(stWizard);

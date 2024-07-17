@@ -52,6 +52,16 @@ void showWizard(stWizard wizard) {
     printf("\n\n\t************************************\n");
 }
 
+/* Shows a Wand of a Wizard.
+    Recevies as parameter the wand that's going to be shown */
+void showWand(stWand wand) {
+    printf("\n\n\t************** WAND **************\n");
+    printf("\n\t Wood: %s\n", wand.wood);
+    printf("\n\t Core: %s\n", wand.core);
+    printf("\n\tCarrier: %s\n", wand.carrier);
+    printf("\n\n\t**********************************\n");
+}
+
 /* Modify a Wizard structure (assuming it's loaded).
     Receives as parameter the Wizard that is going to modified
     Returns the modified version of the Wizard received as paramater */
