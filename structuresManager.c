@@ -48,7 +48,7 @@ void showWizard(stWizard wizard) {
     printf("\n\t House: %s\n", wizard.house);
     printf("\n\t Wand:\n");
     printf("\n\t - wood: %s\n", wizard.wand.wood);
-    printf("\n\t - core: %s\n", wizard.wand.core);
+    printf("\n\t - core: %s", wizard.wand.core);
     printf("\n\n\t************************************\n");
 }
 
@@ -58,7 +58,7 @@ void showWand(stWand wand) {
     printf("\n\n\t************** WAND **************\n");
     printf("\n\t Wood: %s\n", wand.wood);
     printf("\n\t Core: %s\n", wand.core);
-    printf("\n\tCarrier: %s\n", wand.carrier);
+    printf("\n\t Carrier: %s", wand.carrier);
     printf("\n\n\t**********************************\n");
 }
 
