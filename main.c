@@ -15,6 +15,7 @@ void deleteWizard();
 void modifyWizard();
 void searchWizard();
 void listWizards();
+void searchWand();
 
 /* LIST WIZARDS AUXILIARIES PROTOTYPES */
 void listVisibleWizards();
@@ -65,6 +66,7 @@ void showOperations() {
         "< D > Delete a Wizard",
         "< M > Modify a Wizard",
         "< S > Search a Wizard",
+        "< SW > Search a Wand",
         "< L > List Wizards"
     };
 
@@ -77,18 +79,21 @@ void showOperations() {
 /* Gets the user's Operation.
     Returns the ASCII code for the character entered (returning -1 for an invalid character) */
 int getOpt() {
-    char opt;
-    int optCode;
-
+    char opt[2] = {' ', '\n'};
+    int optCode, exit;
+    
     printf("\n\n\tPlease, enter the character for the Operation (ESC to exit): ");
     fflush(stdin);
-    scanf(" %c", &opt);
+    gets(opt);
 
-    optCode = toupper(opt);
+    optCode = toupper(opt[0]) + toupper(opt[1]);
+    exit = toupper(opt[0]);
 
-    // getting empty spaces
+    // catching empty spaces and escape sequence
     if (optCode == 32)
         optCode = -1;
+    else if (exit == 27)
+        optCode = 27;
 
     return optCode;
 }
@@ -160,6 +165,18 @@ void executeOpts(int optCode) {
                 abortCode = abort;
             } while (abortCode != 27);
             break;
+        case 170:
+            do {
+                showWelcome();
+                searchWand();
+
+                printf("\n\tPress any character to search another wand (ESC for exit): ");
+                fflush(stdin);
+                scanf(" %c", &abort);
+
+                abortCode = abort;
+            } while (abortCode != 27);
+            break;
         default:
             showWelcome();
             printf("\n\tOOPS :/ That operation is not defined\n");
@@ -200,6 +217,7 @@ void deleteWizard() {
 
     showWelcome();
 
+    printf("\n\tEnter the ID of the Wizard you want to delete");
     id = getWizardID();
     searchWizardByID(id, &pos, &wizard);
 
@@ -224,6 +242,7 @@ void modifyWizard() {
 
     showWelcome();
 
+    printf("\n\tEnter the ID of the Wizard you want to modify");
     id = getWizardID();
     searchWizardByID(id, &pos, &wizard);
 
@@ -240,6 +259,7 @@ void searchWizard() {
 
     showWelcome();
 
+    printf("\n\tEnter the ID of the Wizard you want to search");
     id = getWizardID();
     searchWizardByID(id, &pos, &wizard);
 
@@ -280,6 +300,22 @@ void listWizards() {
         listWizardsByHouse();
     else
         listObituary();
+}
+
+void searchWand() {
+    stWizard wizard;
+    int pos, id;
+
+    showWelcome();
+
+    printf("\n\tEnter the ID of the Wizard you want to search its Wand");
+    id = getWizardID();
+    searchWizardByID(id, &pos, &wizard);
+
+    if (pos != -1 && wizard.visible)
+        showWand(wizard.wand);
+    else
+        printf("\n\tOOPS :/ The entered ID was not found in the file '%s'\n", WIZARDS_FILENAME);
 }
 
 /// LIST WIZARDS AUXILIARIES DEFINITIONS

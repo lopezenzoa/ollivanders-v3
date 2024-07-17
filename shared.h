@@ -9,7 +9,7 @@
 
 /* CONSTANTS */
 #define STANDARD_LENGTH 30
-#define OPTS_AMOUNT 5
+#define OPTS_AMOUNT 6
 #define WIZARDS_FILENAME "wizards"
 
 /* Every structure has an identifier for searching it at the files.
