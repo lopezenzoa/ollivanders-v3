@@ -128,7 +128,7 @@ void searchWizardByID(int id, int* pos, stWizard* wizard) {
     int found = 0;
 
     if (!id)
-        id = getWizardID();
+        
 
     if(buf) {
         *pos = 0;
