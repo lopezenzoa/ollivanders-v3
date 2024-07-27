@@ -18,6 +18,7 @@ void listWizards();
 void searchWand();
 
 /* LIST WIZARDS AUXILIARIES PROTOTYPES */
+int getListingOpt();
 void listVisibleWizards();
 void listWizardsByHouse();
 void listObituary();
@@ -153,24 +154,24 @@ void executeOpts(int optCode) {
                 abortCode = abort;
             } while (abortCode != 27);
             break;
-        case 76:
-            do {
-                showWelcome();
-                listWizards();
-
-                printf("\n\tPress any character to list by other view (ESC for exit): ");
-                fflush(stdin);
-                scanf(" %c", &abort);
-
-                abortCode = abort;
-            } while (abortCode != 27);
-            break;
         case 170:
             do {
                 showWelcome();
                 searchWand();
 
                 printf("\n\tPress any character to search another wand (ESC for exit): ");
+                fflush(stdin);
+                scanf(" %c", &abort);
+
+                abortCode = abort;
+            } while (abortCode != 27);
+            break;
+        case 76:
+            do {
+                showWelcome();
+                listWizards();
+
+                printf("\n\tPress any character to list by other view (ESC for exit): ");
                 fflush(stdin);
                 scanf(" %c", &abort);
 
@@ -212,13 +213,12 @@ void addWizard() {
 
 void deleteWizard() {
     char confirm;
-    int pos, id;
+    int pos, id = 0;
     stWizard wizard;
 
     showWelcome();
 
     printf("\n\tEnter the ID of the Wizard you want to delete");
-    id = getWizardID();
     searchWizardByID(id, &pos, &wizard);
 
     if (pos != -1 && wizard.visible) {
@@ -237,13 +237,12 @@ void deleteWizard() {
 }
 
 void modifyWizard() {
-    int pos, id;
+    int pos, id = 0;
     stWizard wizard;
 
     showWelcome();
 
     printf("\n\tEnter the ID of the Wizard you want to modify");
-    id = getWizardID();
     searchWizardByID(id, &pos, &wizard);
 
     if (pos != -1 && wizard.visible) {
@@ -255,12 +254,11 @@ void modifyWizard() {
 
 void searchWizard() {
     stWizard wizard;
-    int pos, id;
+    int pos, id = 0;
 
     showWelcome();
 
     printf("\n\tEnter the ID of the Wizard you want to search");
-    id = getWizardID();
     searchWizardByID(id, &pos, &wizard);
 
     if (pos != -1 && wizard.visible)
@@ -269,8 +267,22 @@ void searchWizard() {
         printf("\n\tOOPS :/ The entered ID was not found in the file '%s'\n", WIZARDS_FILENAME);
 }
 
+void searchWand() {
+    stWizard wizard;
+    int pos, id = 0;
+
+    showWelcome();
+
+    printf("\n\tEnter the ID of the Wizard you want to search its Wand");
+    searchWizardByID(id, &pos, &wizard);
+
+    if (pos != -1 && wizard.visible)
+        showWand(wizard.wand);
+    else
+        printf("\n\tOOPS :/ The entered ID was not found in the file '%s'\n", WIZARDS_FILENAME);
+}
+
 void listWizards() {
-    char listingView;
     int listingViewCode;
 
     showWelcome();
@@ -279,6 +291,23 @@ void listWizards() {
     printf("\n\t< V >. Visible Wizards");
     printf("\n\t< H >. Wizards of a specific house");
     printf("\n\t< O >. Obituary");
+
+    listingViewCode = getListingOpt();
+
+    showWelcome();
+
+    if (listingViewCode == 86)
+        listVisibleWizards();
+    else if (listingViewCode == 72)
+        listWizardsByHouse();
+    else
+        listObituary();
+}
+
+/// LIST WIZARDS AUXILIARIES DEFINITIONS
+int getListingOpt() {
+    char listingView;
+    int listingViewCode;
 
     do {
         printf("\n\n\tPlease, enter the view you want to list the wizards: ");
@@ -292,33 +321,9 @@ void listWizards() {
 
     } while (listingViewCode != 86 && listingViewCode != 72 && listingViewCode != 79);
 
-    showWelcome();
-
-    if (listingViewCode == 86)
-        listVisibleWizards();
-    else if (listingViewCode == 72)
-        listWizardsByHouse();
-    else
-        listObituary();
+    return listingViewCode;
 }
 
-void searchWand() {
-    stWizard wizard;
-    int pos, id;
-
-    showWelcome();
-
-    printf("\n\tEnter the ID of the Wizard you want to search its Wand");
-    id = getWizardID();
-    searchWizardByID(id, &pos, &wizard);
-
-    if (pos != -1 && wizard.visible)
-        showWand(wizard.wand);
-    else
-        printf("\n\tOOPS :/ The entered ID was not found in the file '%s'\n", WIZARDS_FILENAME);
-}
-
-/// LIST WIZARDS AUXILIARIES DEFINITIONS
 void listVisibleWizards() {
     int wizardsAmount = 0;
     stWizard visibleWizards[STANDARD_LENGTH];
