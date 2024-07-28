@@ -13,7 +13,7 @@ The first time you compile and execute the 'main.c' file at the command prompt, 
 < M > Modify a Wizard\
 < S > Search a Wizard\
 < SW > Search a Wand\
-< L > List Wizards\
+< L > List Wizards
 
 A: Adds a new Wizard, allowing the user to aquire a Wand with a personality test.\
 D: Deletes an existing Wizard from the file.\
@@ -41,7 +41,7 @@ typedef struct {\
     char core[STANDARD_LENGTH * 2];\
     char carrier[STANDARD_LENGTH];\
     int visible;\
-} stWand;\
+} stWand;
 
 typedef struct {\
     int ID;\
@@ -49,7 +49,7 @@ typedef struct {\
     char house[STANDARD_LENGTH];\
     stWand wand;\
     int visible;\
-} stWizard;\
+} stWizard;
 
 It's good to mention that:
 - every ID for each Wizard is random generated and unique, in order to execute searchings.
