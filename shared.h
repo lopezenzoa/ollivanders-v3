@@ -7,7 +7,7 @@
 #include <string.h>
 #include "pila.c"
 
-/* CONSTANTS */
+// Constants
 #define STANDARD_LENGTH 30
 #define OPTS_AMOUNT 6
 #define WIZARDS_FILENAME "wizards"

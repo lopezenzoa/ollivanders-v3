@@ -3,7 +3,7 @@
 
 #include "shared.h"
 
-/// PROTOTYPES
+// Prototypes
 int getWizardID();
 stWizard loadWizardSt(int, stWand);
 void showWizard(stWizard);

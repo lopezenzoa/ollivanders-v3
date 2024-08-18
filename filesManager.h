@@ -3,7 +3,7 @@
 
 #include "shared.h"
 
-/// PROTOTYPES
+// Prototypes
 int getID();
 int checkID(int);
 int checkName(char []);
