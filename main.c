@@ -1,8 +1,6 @@
 #include "operations.c"
 
 void ollivanders();
-
-/* GENERAL AUXILIARIES */
 void executeOpts(int);
 
 int main() {
@@ -10,7 +8,6 @@ int main() {
     return 0;
 }
 
-/*  GENERAL */
 void ollivanders() {
     int choosenOpt;
 
@@ -34,9 +31,11 @@ void ollivanders() {
     } while (choosenOpt != 27);
 }
 
-/// AUXILIARIES DEFINITIONS
-/* Executes the user's choosen Operation over the choosen structure through a switch statement.
-    Receives as parameters both ASCII codes of the Operation and the structure */
+
+/**
+ * Executes the user's operation through a switch statement.
+ * @param optCode ASCII code of the operation.
+*/
 void executeOpts(int optCode) {
     char abort;
     int abortCode;

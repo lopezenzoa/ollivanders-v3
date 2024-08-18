@@ -1,7 +1,9 @@
 #include "filesManager.h"
 
-/* Generates a unique ID, compare a random generated ID with all the IDs (wizards and their wands) in the 'wizards' file.
-    Returns a unique ID */
+/**
+ * Generates a unique ID, compare a random generated ID with all the IDs (wizards and their wands) in the 'wizards' file.
+ * @return unique ID.
+ */
 int getID() {
     int id, recordsAmount = 0, range, found;
  
@@ -22,9 +24,11 @@ int getID() {
     return id;
 }
 
-/* Loops trough the file 'WIZARDS' searching for an ID.
-    Receives as parameter the ID that's going to be compared.
-    Returns a flag determining if it was found or not */
+/**
+ * Loops trough the file 'WIZARDS' searching for a given ID.
+ * @param id that's going to be compared.
+ * @return flag determining if it was found or not.
+ */
 int checkID(int id) {
     FILE* buf = fopen(WIZARDS_FILENAME, "rb");
     stWizard wizard;
@@ -41,9 +45,11 @@ int checkID(int id) {
     return found;
 }
 
-/* Loops trough the file 'WIZARDS' searching for a name.
-    Receives as parameter the name that's going to be compared.
-    Returns a flag determining if it was found or not */
+/**
+ * Loops trough the file 'WIZARDS' searching for a given name.
+ * @param name that's going to be compared.
+ * @return flag determining if it was found or not.
+ */
 int checkName(char name[]) {
     FILE* buf = fopen(WIZARDS_FILENAME, "rb");
     stWizard wizard;
@@ -60,9 +66,12 @@ int checkName(char name[]) {
     return found;
 }
 
-/* Counts the total amount of records in an file.
-    Receives as parameters the filename as a string and a records length (in bytes)
-    Returns the amount of records in the file (0 by default) */
+/**
+ * Counts the total amount of records in an file.
+ * @param filename as a string for the filename.
+ * @param recordsLength records length (in bytes).
+ * @return the amount of records in the file (0 by default)
+ */
 int countRecords(char filename[], size_t recordLength) {
     FILE* buf = fopen(filename, "rb");
     int recordsAmount = 0;
@@ -77,8 +86,10 @@ int countRecords(char filename[], size_t recordLength) {
     return recordsAmount;
 }
 
-/* Writes a loaded stWizard at the end of the file 'wizards'.
-    Receives as paramater the structure which is going to be written. */
+/**
+ * Writes a loaded stWizard at the end of the file 'wizards'.
+ * @param wizard the structure which is going to be written.
+ */
 void writeWizard(stWizard wizard) {
     FILE* buf = fopen(WIZARDS_FILENAME, "ab");
     int added;
@@ -97,9 +108,12 @@ void writeWizard(stWizard wizard) {
 
 }
 
-/* Reads the file 'wizards'
-    Receives as parameters an array representing all wizards read and it's size (assuming it's long enough).
-    Returns the amount of wizards added to the array */
+/**
+ * Reads the file 'wizards'.
+ * @param wizards an array representing all wizards.
+ * @param size the size of the container array (assuming it's long enough).
+ * @return the amount of wizards added to the array.
+ */
 int readWizardsFile(int size, stWizard wizards[]) {
     FILE* buf = fopen(WIZARDS_FILENAME, "rb");
     stWizard wizard;
@@ -119,9 +133,12 @@ int readWizardsFile(int size, stWizard wizards[]) {
     return pos;
 }
 
-/* Searchs the wizard in the file 'wizards' which matches with the given ID.
-    Receives the ID of the wanted wizard and the memory address of it's position at the file.
-    Returns the wizard that matches with the given ID (if it's not found, th value of the position is going to be -1) */
+/**
+ * Searchs the wizard in the file 'wizards' which matches with a given ID.
+ * @param ID of the wanted wizard.
+ * @param pos the memory address of it's position at the file (-1 by default).
+ * @param the memory address of the structure wich ig goning to be filled (if found).
+ */
 void searchWizardByID(int id, int* pos, stWizard* wizard) {
     FILE* buf = fopen(WIZARDS_FILENAME, "rb");
     stWizard aux;
@@ -150,9 +167,12 @@ void searchWizardByID(int id, int* pos, stWizard* wizard) {
         *pos = -1;
 }
 
-/* Searchs the wizard in the file 'wizards' which matches with the given name.
-    Receives the name of the wanted wizard and the memory address of it's position at the file.
-    Returns the wizard that matches with the given name (if it's not found, th value of the position is going to be -1) */
+/**
+ * Searchs the wizard in the file 'wizards' which matches with a given name.
+ * @param name of the wanted wizard.
+ * @param pos memory address of it's position at the file (-1 by default).
+ * @return the wizard that matches with the given name (if found)
+ */
 stWizard searchWizardByName(char name[], int* pos) {
     FILE* buf = fopen(WIZARDS_FILENAME, "rb");
     stWizard aux;
@@ -177,8 +197,11 @@ stWizard searchWizardByName(char name[], int* pos) {
     return aux;
 }
 
-/* Modifies an existing wizard in the file 'wizards'.
-    Receives as parameters the modified wizard and it's position in the file */
+/**
+ * Modifies an existing wizard in the file 'wizards'.
+ * @param wizard the modified wizard.
+ * @param pos it's position in the file.
+ */
 void modifyWizardInFile(stWizard wizard, int pos) {
     FILE* buf = fopen(WIZARDS_FILENAME, "r+b");
     int modified = 0;
@@ -197,8 +220,11 @@ void modifyWizardInFile(stWizard wizard, int pos) {
         printf("\n\tOOPS :/ There was a problem during opening the file '%s'\n", WIZARDS_FILENAME);
 }
 
-/* Delete an existing wizard from the file 'wizards'.
-    Recieves as parameters the wizard which is going to be deleted and it's position at the file */
+/**
+ * Delete an existing wizard from the file 'wizards'.
+ * @param the wizard which is going to be deleted.
+ * @param pos it's position at the file.
+ */
 void deleteWizardInFile(stWizard wizard, int pos) {
     FILE* buf = fopen(WIZARDS_FILENAME, "r+b");
     int deleted = 0;
@@ -224,9 +250,11 @@ void deleteWizardInFile(stWizard wizard, int pos) {
         printf("\n\tOOPS :/ There was a problem during opening the file '%s'\n", WIZARDS_FILENAME);
 }
 
-/* Counts the amount of wizards that belong to a specific house.
-    Receives as parameter the house which is going to be compared.
-    Returns the amount of records that match with the house (0 by default) */
+/**
+ * Counts the amount of wizards that belong to a specific house.
+ * @param house house which is going to be compared.
+ * @return the amount of records that match with the house (0 by default).
+ */
 int countWizardsByHouse(char house[]) {
     FILE* buf = fopen(WIZARDS_FILENAME, "rb");
     int amount = 0;
@@ -243,8 +271,11 @@ int countWizardsByHouse(char house[]) {
     return amount;
 }
 
-/* Fills an array of wizards that belong to a specific house.
-    Receives as parameters the array which is going to be fill and the house which is going to be compared */
+/**
+ * Fills an array of wizards that belong to a specific house.
+ * @param wizards the array which is going to be filled.
+ * @param house which is going to be compared.
+ */
 void fillWizByHouseArray(stWizard wizards[], char house[]) {
     FILE* buf = fopen(WIZARDS_FILENAME, "rb");
     stWizard aux;
@@ -261,8 +292,10 @@ void fillWizByHouseArray(stWizard wizards[], char house[]) {
     }
 }
 
-/* Stacks all wizards which are no visible (0) in the file 'wizards'.
-    Receives as parameter the memory address of the stack */
+/**
+ * Stacks all wizards which are no visible (0) in the file 'wizards'.
+ * @param the memory address of the stack.
+ */
 void stackDeadWizards(Pila* dead) {
     FILE* buf = fopen(WIZARDS_FILENAME, "rb");
     stWizard wizard;

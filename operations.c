@@ -1,7 +1,7 @@
 #include "structuresManager.c"
 #include "filesManager.c"
 
-/* OPTS PROTOTYPES */
+// Opts Prototypes
 void addWizard();
 void deleteWizard();
 void modifyWizard();
@@ -9,19 +9,21 @@ void searchWizard();
 void listWizards();
 void searchWand();
 
-/* LIST WIZARDS AUXILIARIES PROTOTYPES */
+// listWizards() auxiliares prototypes
 int getListingOpt();
 void listVisibleWizards();
 void listWizardsByHouse();
 void listObituary();
 
-/* OPTS AUXILIARES */
+// Opts prototypes
 void showWelcome();
 void showOperations();
 int getOpt();
 
-/* Shows the header while cleaning the screen.
-    It's invoked multiple times along the code in order to mantain the screen clean to show information */
+/**
+ * Shows the header while cleaning the screen.
+ * It's invoked multiple times along the code in order to mantain the screen clean to show information.
+ */
 void showWelcome() {
     system("clear");
 
@@ -30,7 +32,9 @@ void showWelcome() {
     printf("\n\n");
 }
 
-/* Shows the list of possible user's Operations */
+/**
+ * Shows the list of possible user's Operations.
+ */
 void showOperations() {
     char OPTS[OPTS_AMOUNT][STANDARD_LENGTH] = {
         "< A > Add a Wizard",
@@ -47,8 +51,10 @@ void showOperations() {
         printf("\n\t%s", OPTS[i]);
 }
 
-/* Gets the user's Operation.
-    Returns the ASCII code for the character entered (returning -1 for an invalid character) */
+/**
+ * Gets the user's Operation.
+ * @return the ASCII code for the character entered (-1 for an invalid character).
+ */
 int getOpt() {
     char opt[2] = {' ', '\n'};
     int optCode, exit;
@@ -69,7 +75,6 @@ int getOpt() {
     return optCode;
 }
 
-/// OPTS DEFINITIONS
 void addWizard() {
     stWizard wizard;
     stWand wand;
@@ -188,7 +193,6 @@ void listWizards() {
         listObituary();
 }
 
-/// LIST WIZARDS AUXILIARIES DEFINITIONS
 int getListingOpt() {
     char listingView;
     int listingViewCode;

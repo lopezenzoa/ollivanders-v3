@@ -1,8 +1,9 @@
 #include "structuresManager.h"
 
-/// DEFINITIONS
-/* Gets the ID entered by the user.
-    Returns a valid ID (in this case, an integer number greater than 0) */
+/**
+ * Gets the ID entered by the user.
+ * @return a valid ID (in this case, an integer number greater than 0).
+ */
 int getWizardID() {
     int id;
 
@@ -18,9 +19,12 @@ int getWizardID() {
     return id;
 }
 
-/* Loads the information of the Wizard structure (stWizard).
-    Receives as parameters the wizard ID number (assuming it's unique) and the wand structure.
-    Returns the Wizard structure loaded with information */
+/**
+ * Loads the information of the Wizard structure (stWizard).
+ * @param ID number of the wizard (assuming it's unique).
+ * @param wand the wizard's wand.
+ * @return the wizard structure loaded with information.
+*/
 stWizard loadWizardSt(int ID, stWand wand) {
     stWizard wizard;
 
@@ -39,8 +43,10 @@ stWizard loadWizardSt(int ID, stWand wand) {
     return wizard;
 }
 
-/* Shows a Wizard and it's wand.
-    Recevies as parameter the wizard that's going to be shown */
+/**
+ * Shows a wizard and it's wand.
+ * @param wizard that's going to be shown.
+ */
 void showWizard(stWizard wizard) {
     printf("\n\n\t************** WIZARD **************\n");
     printf("\n\t ID: %i\n", wizard.ID);
@@ -52,8 +58,10 @@ void showWizard(stWizard wizard) {
     printf("\n\n\t************************************\n");
 }
 
-/* Shows a Wand of a Wizard.
-    Recevies as parameter the wand that's going to be shown */
+/**
+ * Shows a wizard wand.
+ * @param wand that's going to be shown.
+ */
 void showWand(stWand wand) {
     printf("\n\n\t************** WAND **************\n");
     printf("\n\t Wood: %s\n", wand.wood);
@@ -62,9 +70,11 @@ void showWand(stWand wand) {
     printf("\n\n\t**********************************\n");
 }
 
-/* Modify a Wizard structure (assuming it's loaded).
-    Receives as parameter the Wizard that is going to modified
-    Returns the modified version of the Wizard received as paramater */
+/**
+ * Modifies a wizard structure (assuming it's loaded).
+ * @param wizard that is going to modified.
+ * @return the modified version of the wizard received as paramater.
+ */
 stWizard modifyWizardSt(stWizard wizard) {
     char modWay;
     int modWayCode;
@@ -99,9 +109,11 @@ stWizard modifyWizardSt(stWizard wizard) {
     return wizard;
 }
 
-/* Modifies both structures (stWizard and stWand) completely.
-    Receives as parameter the structure of the Wizard that's going to be modified.
-    Returns the modified version of the Wizard received as paramater */
+/**
+ * Modifies both structures (stWizard and stWand) completely.
+ * @param wizard that's going to be modified.
+ * @return the modified version of the Wizard received as paramater.
+ */
 stWizard modifyWizardComplete(stWizard wizard) {
     printf("\n\n\tPlease, enter the NEW name: ");
     while(getchar() != '\n');
@@ -117,9 +129,11 @@ stWizard modifyWizardComplete(stWizard wizard) {
     return wizard;
 }
 
-/* Modifies both structures (stWizard and stWand) by one field at a time.
-    Receives as parameter the structure of the Wizard that's going to be modified.
-    Returns the modified version of the Wizard received as paramater */
+/**
+ * Modifies both structures (stWizard and stWand) by one field at a time.
+ * @param wizard that's going to be modified.
+ * @return the modified version of the Wizard received as paramater.
+ */
 stWizard modifyWizardByField(stWizard wizard) {
     char field;
     int fieldCode, validField;
@@ -158,8 +172,12 @@ stWizard modifyWizardByField(stWizard wizard) {
     return wizard;
 }
 
-/* Shows an array of Wizards, in a recursive way.
-    Recevies as parameters the array of Wizards, it's size and the current position at the array */
+/**
+ * Shows an array of Wizards, in a recursive way.
+ * @param wizards the array of wizards (assuming it's loaded).
+ * @param wizardsAmount it's size.
+ * @param pos the current position at the array.
+ */
 void showWizardsArray(int wizardsAmount, int pos, stWizard wizards[]) {
     if (wizardsAmount > 0) {
         showWizard(wizards[pos]);
@@ -167,9 +185,11 @@ void showWizardsArray(int wizardsAmount, int pos, stWizard wizards[]) {
     }
 }
 
-/* Sorts a given array of Wizards by their name.
-    Receives as paramaters an array of wizards and it's size.
-    Invokes findMinPos() and swap() to sort the array using selection method */
+/**
+ * Sorts a given array of wizards by their name.
+ * @param wizards array of wizards.
+ * @param wizardsAmount it's size.
+ */
 void sortWizardsArray(int wizardsAmount, stWizard wizards[]) {
     int minPos;
 
@@ -179,8 +199,12 @@ void sortWizardsArray(int wizardsAmount, stWizard wizards[]) {
     }
 }
 
-/* Finds the position of the minor Wizard comparing with the name of each one.
-    Receives as paramaters an array of wizards, it's size and the current position at the array */
+/**
+ * Finds the position of the minor Wizard comparing with the name of each one.
+ * @param wizards the array of wizards (assuming it's loaded).
+ * @param wizardsAmount it's size.
+ * @param pos the current position at the array.
+ */
 int findMinPos(int pos, int wizardsAmount, stWizard wizards[]) {
     stWizard minWizard = wizards[pos];
     int minPos = pos;
@@ -194,7 +218,12 @@ int findMinPos(int pos, int wizardsAmount, stWizard wizards[]) {
     return minPos;
 }
 
-/* Swaps two Wizards inside of an array, using an auxiliar structure (in this case, the current wizard with the minor) */
+/**
+ * Swaps two wizards inside of an array, using an auxiliar structure.
+ * @param wizards the array of wizards (assuming it's loaded).
+ * @param minPos the position of one wizard at the array.
+ * @param pos the position of another wizard.
+ */
 void swap(int pos, int minPos, stWizard wizards[]) {
     stWizard aux;
 
@@ -203,7 +232,9 @@ void swap(int pos, int minPos, stWizard wizards[]) {
     wizards[pos] = aux;
 }
 
-/* Shows a personality test in order to asign a wand for the user */
+/**
+ * Shows a personality test in order to asign a wand for the user.
+ */
 void showPersonalityTest() {
     int answer;
 
@@ -240,8 +271,10 @@ void showPersonalityTest() {
     } while (!answer);
 }
 
-/* Adds a wand to a file.
-    Returns the wand structure loaded with info */
+/**
+ * Adds a wand to a wizard.
+ * @return the wand structure loaded with info.
+ */
 stWand addWand() {
     stWand wand;
     int woodIndex, coreIndex;
@@ -301,9 +334,12 @@ stWand addWand() {
     return wand;
 }
 
-/* Loads the information of the wand structure (stWand).
-    Receives as parameter the wood and the core, both strings.
-    Returns the wand structure loaded with information */
+/**
+ * Loads the information of the wand structure (stWand).
+ * @param wood a string of the choosen wood.
+ * @param core a string of the choosen core.
+ * @return the wand structure loaded with information.
+ */
 stWand loadWandSt(char wood[], char core[]) {
     stWand wand;
 
