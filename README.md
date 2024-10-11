@@ -59,6 +59,3 @@ It's good to mention that:
 
 ## Binary Files
 Every Wizard, when created, is written in the 'wizards' file. At the previous version 'ollivanders-v2', the Wands were written to another file called 'wands' (another requisite for presenting at college), while this newer version simplifies the storage to one file.
-
-## Binary Files
-Every Wizard, when created, is written in the 'wizards' file. At the previous version 'ollivanders-v2' the Wands were written to another file called 'wands' (another requisite for presenting at college), while this newer version simplifies the storage to one file.
