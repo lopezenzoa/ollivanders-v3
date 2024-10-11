@@ -60,36 +60,5 @@ It's good to mention that:
 ## Binary Files
 Every Wizard, when created, is written in the 'wizards' file. At the previous version 'ollivanders-v2', the Wands were written to another file called 'wands' (another requisite for presenting at college), while this newer version simplifies the storage to one file.
 
-- filesManager: concerned for every interaction with the file, simulating a buffer.
-- structuresManager: in charge to manipulate both structures in the application: Wizards and Wands.
-- pila: requisite to presenting the project at college. It's meant to be a simpler way to work with stacks.
-
-Both filesManager and structuresManager libraries include a header 'shared.h' file for constants and structures declaration.
-
-## Structures
-As it was said before, the application has two structures: Wizards and Wands. Each one is declared as follows:
-
-typedef struct {\
-&emsp;char wood[STANDARD_LENGTH];\
-&emsp;char core[STANDARD_LENGTH * 2];\
-&emsp;char carrier[STANDARD_LENGTH];\
-&emsp;int visible;\
-} stWand;
-
-typedef struct {\
-&emsp;int ID;\
-&emsp;char name[STANDARD_LENGTH];\
-&emsp;char house[STANDARD_LENGTH];\
-&emsp;stWand wand;\
-&emsp;int visible;\
-} stWizard;
-
-It's good to mention that:
-- every ID for each Wizard is random generated and unique, in order to execute searching.
-- The field 'visible' on every structure is meant to perform a logic down, since it's necessary to hold deleted Wizards for the obituary.
-- The value for the field 'carrier' in the Wand structure is the same for the field 'name' of the Wizard structure.
-
 ## Binary Files
 Every Wizard, when created, is written in the 'wizards' file. At the previous version 'ollivanders-v2' the Wands were written to another file called 'wands' (another requisite for presenting at college), while this newer version simplifies the storage to one file.
-
-
